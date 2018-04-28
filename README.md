@@ -1,2 +1,4 @@
-# cookbook-consul
-A quick cookbook used to deploy a consul cluster
+# consul
+
+TODO: Enter the cookbook description here.
+
