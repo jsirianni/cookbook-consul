@@ -1,0 +1,9 @@
+{
+    "bootstrap": false,
+    "server": true,
+    "datacenter": "<%=node[:consul][:conf][:datacenter]%>",
+    "data_dir": "<%=node[:consul][:conf][:data_dir]%>",
+    "encrypt": "<%=node[:consul][:conf][:encrypt]%>",
+    "log_level": "<%=node[:consul][:conf][:log_level]%>",
+    "enable_syslog": <%=node[:consul][:conf][:syslog]%>
+}

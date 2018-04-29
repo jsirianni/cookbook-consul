@@ -1,0 +1,14 @@
+[Unit]
+Description=consul server
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User=<%=node[:consul][:user]%>
+Group=<%=node[:consul][:group]%>
+Restart=on-failure
+ExecStart=<%=node[:consul][:binary]%> agent -server -bootstrap-expect=1 \
+	-config-dir=<%=node[:consul][:conf][:serverdir]%> \
+
+[Install]
+WantedBy=multi-user.target
