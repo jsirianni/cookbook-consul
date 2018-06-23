@@ -8,8 +8,48 @@ provisioner:
   always_update_cookbooks: true
 verifier:
   name: inspec
+
+driver_config:
+  box: ubuntu-18.04
+  customize:
+    memory: 1024
+
+
 platforms:
-  - name: ubuntu-18.04
+  - name: consul-0
+    driver_config:
+      network:
+        - ['private_network', {ip: '10.0.2.240'}]
+    attributes:
+      consul:
+        conf:
+          datacenter: "gr-office"
+          encrypt: "mlhw8wEnpHejll40nQx/4Q=="
+          retry_join: "10.0.2.241,10.0.2.242"
+
+  - name: consul-1
+    driver_config:
+      network:
+	- ['private_network', {ip: '10.0.2.241'}]
+    attributes:
+      consul:
+        conf:
+          datacenter: "gr-office"
+          encrypt: "mlhw8wEnpHejll40nQx/4Q=="
+          retry_join: "10.0.2.240,10.0.2.242"
+
+  - name: consul-2
+    driver_config:
+      network:
+	- ['private_network', {ip: '10.0.2.242'}]
+    attributes:
+      consul:
+        conf:
+          datacenter: "gr-office"
+          encrypt: "mlhw8wEnpHejll40nQx/4Q=="
+          retry_join: "10.0.2.240,10.0.2.241"
+
+
 suites:
   - name: default
     run_list:
@@ -17,9 +57,3 @@ suites:
     verifier:
       inspec_tests:
         - test/integration
-    attributes:
-          consul:
-            conf:
-              datacenter: "gr-office"
-              encrypt: "mlhw8wEnpHejll40nQx/4Q=="
-              retry_join: ""
