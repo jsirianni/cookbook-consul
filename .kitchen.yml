@@ -90,4 +90,11 @@ suites:
 
           # All node ip's that form the cluster
           # These can be hostnames in an environment with DNS resolution
-          retry_join: '["10.0.3.240","10.0.3.241","10.0.3.242","10.0.3.243","10.0.3.244"]'
+          #retry_join: '["10.0.3.240","10.0.3.241","10.0.3.242","10.0.3.243","10.0.3.244"]'
+          retry_join: [
+            "10.0.3.240",
+            "10.0.3.241",
+            "10.0.3.242",
+            "10.0.3.243",
+            "10.0.3.244"
+          ]
