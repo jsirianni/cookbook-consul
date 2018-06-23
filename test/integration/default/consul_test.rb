@@ -27,3 +27,13 @@ describe command('sudo consul operator raft list-peers | grep default-consul-0 |
     its('exit_status') { should eq 0 }
     its('stdout') { should match (/leader/) }
 end
+
+# Cluster communication
+describe port(8301) do
+  it { should be_listening }
+end
+
+# Web interface
+describe port(8500) do
+  it { should be_listening }
+end

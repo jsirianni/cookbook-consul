@@ -7,7 +7,7 @@ After=network-online.target
 [Service]
 User=<%=node[:consul][:user]%>
 Group=<%=node[:consul][:group]%>
-Environment=GOMAXPROCS=2
+Environment=GOMAXPROCS=2,CONSUL_UI_BETA=<%=node[:consul][:conf][:beta_ui]%>
 Restart=on-failure
 ExecStart=<%=node[:consul][:binary]%> agent -server -bind <%=node[:consul][:conf][:bind_addr]%> -config-dir=<%=node[:consul][:conf][:base]%>
 

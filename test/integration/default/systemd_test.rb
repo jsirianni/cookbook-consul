@@ -27,7 +27,7 @@ describe command('sudo cat /etc/systemd/system/consul.service | grep Group') do
 end
 
 describe command('sudo cat /etc/systemd/system/consul.service | grep Environment') do
-   its('stdout') { should match (/Environment=GOMAXPROCS=2/) }
+   its('stdout') { should match (/Environment=GOMAXPROCS=2,CONSUL_UI_BETA=true/) }
 end
 
 describe command('sudo cat /etc/systemd/system/consul.service | grep Restart') do

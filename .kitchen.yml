@@ -85,6 +85,8 @@ suites:
     attributes:
       consul:
         conf:
+          ui: true
+          beta_ui: true
           datacenter: "office"
           encrypt: "mlhw8wEnpHejll40nQx/4Q=="
 

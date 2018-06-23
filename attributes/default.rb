@@ -20,6 +20,8 @@ default[:consul][:conf][:base]         = "/etc/consul"
 
 
 # Config params
+default[:consul][:conf][:ui]         = false
+default[:consul][:conf][:beta_ui]    = false
 default[:consul][:conf][:bootstrap]  = false # NOTE: Set to true on a single node, during cluster formation
 default[:consul][:conf][:datacenter] = "default" # NOTE: Override w/ role
 default[:consul][:conf][:encrypt]    = ""        # NOTE: Override w/ role
