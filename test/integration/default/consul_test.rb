@@ -16,3 +16,14 @@ end
 describe command('sudo consul --version | grep Consul | cut -c 9-13') do
    its('stdout') { should match (/1.1.0/) }
 end
+
+# Check member status
+describe command('sudo consul members') do
+    its('exit_status') { should eq 0 }
+end
+
+# default-consul-0 should be the leader
+describe command('sudo consul operator raft list-peers | grep default-consul-0 | cut -c 74-79') do
+    its('exit_status') { should eq 0 }
+    its('stdout') { should match (/leader/) }
+end
