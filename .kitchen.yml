@@ -30,7 +30,7 @@ platforms:
   - name: consul-1
     driver_config:
       network:
-	- ['private_network', {ip: '10.0.2.241'}]
+        - ['private_network', {ip: '10.0.2.241'}]
     attributes:
       consul:
         conf:
@@ -41,7 +41,7 @@ platforms:
   - name: consul-2
     driver_config:
       network:
-	- ['private_network', {ip: '10.0.2.242'}]
+        - ['private_network', {ip: '10.0.2.242'}]
     attributes:
       consul:
         conf:
