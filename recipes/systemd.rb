@@ -12,7 +12,8 @@ end
 execute "reload_systemd" do
   command "systemctl daemon-reload"
   action :nothing
-  notifies :restart, "service[consul]", :delayed
+  notifies :reload, "service[consul]", :delayed
+  # notifies :reload, "service[consul]", :immediately
 end
 
 

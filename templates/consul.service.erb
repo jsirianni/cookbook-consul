@@ -1,14 +1,19 @@
 [Unit]
 Description=consul server
+Documentation=https://consul.io/docs/
 Requires=network-online.target
 After=network-online.target
 
 [Service]
 User=<%=node[:consul][:user]%>
 Group=<%=node[:consul][:group]%>
+Environment=GOMAXPROCS=2
 Restart=on-failure
-ExecStart=<%=node[:consul][:binary]%> agent -server -bootstrap-expect=1 \
-	-config-dir=<%=node[:consul][:conf][:serverdir]%> \
+ExecStart=<%=node[:consul][:binary]%> agent -server -bind <%=node[:consul][:conf][:bind_addr]%> \
+	-config-dir=<%=node[:consul][:conf][:base]%> \
+
+ExecReload=<%=node[:consul][:binary]%> reload
+KillSignal=SIGINT
 
 [Install]
 WantedBy=multi-user.target

@@ -1,5 +1,5 @@
 {
-    "bootstrap": false,
+    "bootstrap": <%=node[:consul][:conf][:bootstrap]%>,
     "server": true,
     "datacenter": "<%=node[:consul][:conf][:datacenter]%>",
     "data_dir": "<%=node[:consul][:conf][:data_dir]%>",
@@ -8,7 +8,7 @@
     "enable_syslog": <%=node[:consul][:conf][:syslog]%>,
     "retry_join" : <%=node[:consul][:conf][:retry_join]%>,
     "addresses": {
-        "https": "0.0.0.0"
+        "https": "<%=node[:consul][:conf][:bind_addr]%>"
     },
     "ports": {
         "https": 8080

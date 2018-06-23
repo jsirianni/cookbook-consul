@@ -3,7 +3,8 @@ group node[:consul][:group] do
 end
 
 user node[:consul][:user] do
-  shell  '/sbin/nologin'
+  #shell  '/sbin/nologin'
+  shell '/bin/bash'
   gid     node[:consul][:group]
   system  true
   manage_home false

@@ -1,36 +1,27 @@
-dirs = [node[:consul][:conf][:base],
-  node[:consul][:conf][:bootstrapdir],
-  node[:consul][:conf][:serverdir],
-  node[:consul][:conf][:clientdir]]
+dirs = [
+  node[:consul][:conf][:base],
+  node[:consul][:conf][:data_dir]
+]
 
 
+# Directories should only be readable by the consul user and root
 dirs.each do |dir|
   directory dir do
     recursive true
     action :create
     owner node[:consul][:user]
     group node[:consul][:group]
+    mode "0700"
   end
 end
 
 
-# Create bootstrap config
-template "#{node[:consul][:conf][:bootstrapdir]}/config.json" do
-  source "bootstrap.json.erb"
-  owner node[:consul][:user]
-  group node[:consul][:group]
-  mode "0600"
-  notifies :restart, "service[consul]", :delayed
-  action :create
-end
-
-
 # Create server config
-template "#{node[:consul][:conf][:serverdir]}/config.json" do
+template "#{node[:consul][:conf][:base]}/server.json" do
   source "server.json.erb"
   owner node[:consul][:user]
   group node[:consul][:group]
   mode "0600"
-  notifies :restart, "service[consul]", :delayed
+  notifies :reload, "service[consul]", :delayed
   action :create
 end

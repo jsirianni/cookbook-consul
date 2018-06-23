@@ -1,10 +1,13 @@
-
+#
+# Use bootstrap: "--bootstrap" on initial run, then disable on second run
+# to allow voting. bootstrap is only required for initial cluster formation
+# and should be avoided anytime after.
 
 ---
 driver:
   name: vagrant
 provisioner:
-  name: chef_solo
+  name: chef_zero
   always_update_cookbooks: true
 verifier:
   name: inspec
@@ -16,6 +19,10 @@ driver_config:
 
 
 platforms:
+
+    #
+    # Initial leader node
+    #
   - name: consul-0
     driver_config:
       network:
@@ -23,11 +30,14 @@ platforms:
     attributes:
       consul:
         conf:
-          datacenter: "gr-office"
-          encrypt: "mlhw8wEnpHejll40nQx/4Q=="
-          retry_join: '["10.0.3.241","10.0.3.242"]'
           bind_addr: "10.0.3.240"
+          # NOTE: Must be true for first run, on one node.
+          bootstrap: true
+          #bootstrap: false
 
+    #
+    # Initial follower nodes (bootstap is `false`)
+    #
   - name: consul-1
     driver_config:
       network:
@@ -35,9 +45,6 @@ platforms:
     attributes:
       consul:
         conf:
-          datacenter: "gr-office"
-          encrypt: "mlhw8wEnpHejll40nQx/4Q=="
-          retry_join: '["10.0.3.240","10.0.3.242"]'
           bind_addr: "10.0.3.241"
 
   - name: consul-2
@@ -47,10 +54,25 @@ platforms:
     attributes:
       consul:
         conf:
-          datacenter: "gr-office"
-          encrypt: "mlhw8wEnpHejll40nQx/4Q=="
-          retry_join: '["10.0.3.240","10.0.3.241"]'
           bind_addr: "10.0.3.242"
+
+  - name: consul-3
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.243"}]
+    attributes:
+      consul:
+        conf:
+          bind_addr: "10.0.3.243"
+
+  - name: consul-4
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.244"}]
+    attributes:
+      consul:
+        conf:
+          bind_addr: "10.0.3.244"
 
 
 suites:
@@ -60,3 +82,12 @@ suites:
     verifier:
       inspec_tests:
         - test/integration
+    attributes:
+      consul:
+        conf:
+          datacenter: "office"
+          encrypt: "mlhw8wEnpHejll40nQx/4Q=="
+
+          # All node ip's that form the cluster
+          # These can be hostnames in an environment with DNS resolution
+          retry_join: '["10.0.3.240","10.0.3.241","10.0.3.242","10.0.3.243","10.0.3.244"]'

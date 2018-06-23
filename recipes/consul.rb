@@ -9,7 +9,7 @@ end
 
 
 execute "extract_consul" do
-  command "unzip /tmp/consul.zip -d #{node[:consul][:path]}"
+  command "unzip -o /tmp/consul.zip -d #{node[:consul][:path]}"
   action :nothing
 end
 
