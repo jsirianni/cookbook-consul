@@ -13,6 +13,10 @@ describe file('/etc/consul/server.json') do
     its('group') { should eq 'consul' }
 end
 
+describe command('sudo cat /etc/consul/server.json | grep ui') do
+   its('stdout') { should match ("\"ui\": true,") }
+end
+
 describe command('sudo cat /etc/consul/server.json | grep bootstrap') do
    its('stdout') { should match ("\"bootstrap\": false,") }
 end
