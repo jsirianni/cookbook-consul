@@ -67,7 +67,7 @@ sudo tail -F /var/log/syslog
 consul members  
 
 # Get list of members and their status (leader / follower)
-consul operator raft list-peers /
+consul operator raft list-peers 
 ```
 
 
