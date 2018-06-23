@@ -10,7 +10,7 @@ verifier:
   name: inspec
 
 driver_config:
-  box: ubuntu-18.04
+  box: bento/ubuntu-16.04
   customize:
     memory: 1024
 
@@ -19,35 +19,38 @@ platforms:
   - name: consul-0
     driver_config:
       network:
-        - ['private_network', {ip: '10.0.2.240'}]
+        - ["private_network", {ip: "10.0.3.240"}]
     attributes:
       consul:
         conf:
           datacenter: "gr-office"
           encrypt: "mlhw8wEnpHejll40nQx/4Q=="
-          retry_join: "10.0.2.241,10.0.2.242"
+          retry_join: '["10.0.3.241","10.0.3.242"]'
+          bind_addr: "10.0.3.240"
 
   - name: consul-1
     driver_config:
       network:
-        - ['private_network', {ip: '10.0.2.241'}]
+        - ["private_network", {ip: "10.0.3.241"}]
     attributes:
       consul:
         conf:
           datacenter: "gr-office"
           encrypt: "mlhw8wEnpHejll40nQx/4Q=="
-          retry_join: "10.0.2.240,10.0.2.242"
+          retry_join: '["10.0.3.240","10.0.3.242"]'
+          bind_addr: "10.0.3.241"
 
   - name: consul-2
     driver_config:
       network:
-        - ['private_network', {ip: '10.0.2.242'}]
+        - ["private_network", {ip: "10.0.3.242"}]
     attributes:
       consul:
         conf:
           datacenter: "gr-office"
           encrypt: "mlhw8wEnpHejll40nQx/4Q=="
-          retry_join: "10.0.2.240,10.0.2.241"
+          retry_join: '["10.0.3.240","10.0.3.241"]'
+          bind_addr: "10.0.3.242"
 
 
 suites:
