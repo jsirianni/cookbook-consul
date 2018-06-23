@@ -23,6 +23,3 @@ suites:
               datacenter: "gr-office"
               encrypt: "mlhw8wEnpHejll40nQx/4Q=="
               retry_join: ""
-
-            mysql:
-              password: "securepassword"

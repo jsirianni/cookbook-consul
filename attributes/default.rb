@@ -24,14 +24,12 @@ default[:consul][:conf][:clientdir]    = "/etc/consul/conf.d/client"
 
 # Config params
 default[:consul][:conf][:datacenter] = "default" # NOTE: Override w/ role
-default[:consul][:conf][:encrypt]    = ""      # NOTE: Override w/ role
+default[:consul][:conf][:encrypt]    = ""        # NOTE: Override w/ role
 default[:consul][:conf][:log_level]  = "info"
 default[:consul][:conf][:syslog]     = "true"
 default[:consul][:conf][:data_dir]   = "/opt/consul"
-default[:consul][:conf][:retry_join] = '["10.1.10.1"]'     # NOTE: Override w/ role
+default[:consul][:conf][:retry_join] = '["10.1.10.1"]'     # NOTE: Override w/ role # NOTE: Same as startjoin but will retry
+
 
 # Systemd
 default[:consul][:systemd_unit_file] = "/etc/systemd/system/consul.service"
-
-
-#    "retry_join": <%=node[:consul][:conf][:retry_join]%>
