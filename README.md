@@ -67,7 +67,14 @@ sudo tail -F /var/log/syslog
 consul members  
 
 # Get list of members and their status (leader / follower)
-consul operator raft list-peers 
+consul operator raft list-peers
+```
+
+## Testing
+The example `.kitchen.yml` configuration requires vagrant, virtualbox, bento/ubuntu16.04 box.
+```
+berks install
+kitchen verify
 ```
 
 
