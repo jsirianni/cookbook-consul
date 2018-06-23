@@ -5,7 +5,7 @@ https://www.consul.io/
 
 ## Goals
 - Form a Consul cluster with single chef run
-- Remove `--bootstrap` state without stopping or restarting the leader node, with no manual intervention
+- Remove `--bootstrap` state without stopping or restarting the leader node, without manual intervention
 - Adding additional nodes should be automatic, a single chef role update and converge adds the nodes
 
 
@@ -42,10 +42,6 @@ knife bootstrap consul-0 -r 'role[consul_main_office]' \
     -P password
 ```
 
-After a successful cluster formation, chef will set `node[:consul][:conf][:bootstap]`
-to `false`, which will allow the cluster to choose a new leader, should a failure occur.
-This will happen when chef converges again, in the future.
-
 
 ### Converge the initial follower nodes
 Consul clusters should have at least three total nodes.
@@ -70,6 +66,12 @@ consul members
 consul operator raft list-peers
 ```
 
+### Remove bootstrap state from the leader node
+Consul clusters should have at least three total nodes.
+```
+knife bootstrap consul-0 -r 'role[consul_main_office]' -x root -P password
+```
+
 ## Testing
 The example `.kitchen.yml` configuration requires vagrant, virtualbox, bento/ubuntu16.04 box.
 ```
@@ -79,4 +81,4 @@ kitchen verify
 
 
 ## Todo
-- Remove `bootstrap` state from initial leader after cluster formation
+- automatic removal of `bootstrap` state from initial leader after cluster formation
