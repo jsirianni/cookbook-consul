@@ -9,9 +9,6 @@
     "enable_syslog": <%=node[:consul][:conf][:syslog]%>,
     "retry_join" : <%=node[:consul][:conf][:retry_join]%>,
     "addresses": {
-        "https": "<%=node[:consul][:conf][:bind_addr]%>"
-    },
-    "ports": {
-        "https": 8080
+        "http": "<%=node[:consul][:conf][:bind_addr]%>"
     }
 }
