@@ -33,6 +33,10 @@ describe port(8301) do
   it { should be_listening }
 end
 
+describe port(8302) do
+  it { should be_listening }
+end
+
 # Web interface
 describe port(8500) do
   it { should be_listening }
