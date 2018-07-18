@@ -36,7 +36,3 @@ end
 describe command('sudo cat /etc/consul/server.json | grep enable_syslog') do
    its('stdout') { should match ("\"enable_syslog\": true,") }
 end
-
-describe command('sudo cat /etc/consul/server.json | grep https | grep 8080') do
-    its('exit_status') { should eq 0 }
-end
