@@ -14,7 +14,7 @@ end
 
 # Verify version 1.1.0
 describe command('sudo consul --version | grep Consul | cut -c 9-13') do
-   its('stdout') { should match (/1.1.0/) }
+   its('stdout') { should match (/1.2.1/) }
 end
 
 # Check member status

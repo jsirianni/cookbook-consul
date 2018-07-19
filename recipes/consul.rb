@@ -5,6 +5,7 @@ remote_file "/tmp/consul.zip" do
   mode   "0755"
   action :create
   notifies :run, "execute[extract_consul]", :immediately
+  checksum node[:consul][:sha256]
 end
 
 

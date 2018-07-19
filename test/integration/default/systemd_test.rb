@@ -26,10 +26,6 @@ describe command('sudo cat /etc/systemd/system/consul.service | grep Group') do
    its('stdout') { should match (/Group=consul/) }
 end
 
-describe command('sudo cat /etc/systemd/system/consul.service | grep Environment') do
-   its('stdout') { should match (/Environment=CONSUL_UI_BETA=1/) }
-end
-
 describe command('sudo cat /etc/systemd/system/consul.service | grep Restart') do
    its('stdout') { should match (/Restart=on-failure/) }
 end
