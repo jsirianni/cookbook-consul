@@ -85,6 +85,19 @@ berks install
 kitchen verify
 ```
 
+## Upgrades
+The cookbook supports upgrading consul to a new version. Update the following attributes to set the binary version.
+Chef will detect a checksum change, forcing the upgrade.
+```
+default[:consul][:source] = "< URL TO ZIP FILE >"
+default[:consul][:sha256] = "< sha256 hash >"
+```
+
+Upgrade note: Consul requires a `restart` for the new version to take effect. It is potentially risky to have
+chef restart (rather than reload) Consul in an automated fashion. In order for the new version to take effect,
+the administrator must manually restart the service on all cluster nodes. Chef workstation can be used to do this
+with large consul clusters.
+
 
 ## Todo
 - automatic removal of `bootstrap` state from initial leader after cluster formation
