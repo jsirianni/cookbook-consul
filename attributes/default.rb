@@ -12,7 +12,8 @@ default[:consul][:mode]   = "-server"
 
 
 # Source URL
-default[:consul][:source] = "https://releases.hashicorp.com/consul/1.1.0/consul_1.1.0_linux_amd64.zip"
+default[:consul][:source] = "https://releases.hashicorp.com/consul/1.2.1/consul_1.2.1_linux_amd64.zip"
+default[:consul][:sha256] = "e4146334be453146890023303da3e0c815669e108a18fb7d742745df3414a31a"
 
 
 # Config directories
