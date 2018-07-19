@@ -1,3 +1,6 @@
+# Read node attributes
+node = json("/tmp/kitchen/dna.json").params
+
 describe service "consul" do
     it { should be_installed }
     it { should be_enabled }
@@ -39,7 +42,7 @@ describe command('sudo cat /etc/systemd/system/consul.service | grep ExecStart |
 end
 
 describe command('sudo cat /etc/systemd/system/consul.service | grep ExecReload') do
-   its('stdout') { should match ("ExecReload=/usr/local/bin/consul reload") }
+   its('stdout') { should match ("ExecReload=/usr/local/bin/consul reload -http-addr #{node['consul']['conf']['bind_addr']}:8500") }
 end
 
 describe command('sudo cat /etc/systemd/system/consul.service | grep KillSignal') do

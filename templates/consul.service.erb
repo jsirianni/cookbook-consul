@@ -10,5 +10,5 @@ Group=<%=node[:consul][:group]%>
 Restart=on-failure
 ExecStart=<%=node[:consul][:binary]%> agent -server -bind <%=node[:consul][:conf][:bind_addr]%> -config-dir=<%=node[:consul][:conf][:base]%>
 
-ExecReload=<%=node[:consul][:binary]%> reload
+ExecReload=<%=node[:consul][:binary]%> reload -http-addr <%=node[:consul][:conf][:bind_addr]%>:<%=node[:consul][:conf][:api_port]%>
 KillSignal=SIGINT

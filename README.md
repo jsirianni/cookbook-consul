@@ -9,6 +9,10 @@ https://www.consul.io/
 - Adding additional nodes should be automatic, a single chef role update and converge adds the nodes
 
 
+## Supported versions
+- Consul 1.2.1 on Ubuntu 16.04 LTS
+
+
 ## Usage
 ### Create a role for the cluster
 ```
