@@ -9,7 +9,6 @@
     "enable_syslog": <%=node[:consul][:conf][:syslog]%>,
     "retry_join" : <%=node[:consul][:conf][:retry_join]%>,
     "addresses": {
-        "http": "<%=node[:consul][:conf][:bind_addr]%>",
-        "http": "<%=node[:consul][:conf][:localhost]%>"
+        "http": "<%=node[:consul][:conf][:bind_addr]%>"
     }
 }
