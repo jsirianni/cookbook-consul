@@ -13,8 +13,8 @@ verifier:
   name: inspec
 
 driver_config:
-  box: bento/ubuntu-16.04
-  #box: bento/fedora-27
+  #box: bento/ubuntu-16.04
+  box: bento/fedora-27
   customize:
     memory: 1024
 
@@ -33,9 +33,8 @@ platforms:
         conf:
           bind_addr: "10.0.3.240"
           # NOTE: Must be true for first run, on one node.
-          #bootstrap: true
-          bootstrap: false
-
+          bootstrap: true
+          #bootstrap: false
     #
     # Initial follower nodes (bootstap is `false`)
     #
@@ -47,7 +46,6 @@ platforms:
       consul:
         conf:
           bind_addr: "10.0.3.241"
-
   - name: consul-2
     driver_config:
       network:
@@ -56,6 +54,28 @@ platforms:
       consul:
         conf:
           bind_addr: "10.0.3.242"
+
+    #
+    # Consul agents
+    #
+  - name: consul-agent-0
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.250"}]
+    attributes:
+      consul:
+        conf:
+          server: false
+          bind_addr: "10.0.3.250"
+  - name: consul-agent-1
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.251"}]
+    attributes:
+      consul:
+        conf:
+          server: false
+          bind_addr: "10.0.3.251"
 
 
 suites:
@@ -74,11 +94,8 @@ suites:
 
           # All node ip's that form the cluster
           # These can be hostnames in an environment with DNS resolution
-          #retry_join: '["10.0.3.240","10.0.3.241","10.0.3.242","10.0.3.243","10.0.3.244"]'
           retry_join: [
             "10.0.3.240",
             "10.0.3.241",
-            "10.0.3.242",
-            "10.0.3.243",
-            "10.0.3.244"
+            "10.0.3.242"
           ]
