@@ -1,7 +1,7 @@
 {
     "ui": <%=node[:consul][:conf][:ui]%>,
     "bootstrap": <%=node[:consul][:conf][:bootstrap]%>,
-    "server": true,
+    "server": <%=node[:consul][:conf][:server]%>,
     "datacenter": "<%=node[:consul][:conf][:datacenter]%>",
     "data_dir": "<%=node[:consul][:conf][:data_dir]%>",
     "encrypt": "<%=node[:consul][:conf][:encrypt]%>",
