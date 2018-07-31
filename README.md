@@ -11,6 +11,7 @@ https://www.consul.io/
 
 ## Supported versions
 - Consul 1.2.1 on Ubuntu 16.04 LTS
+- Consul 1.2.1 on Fedora 27
 
 
 ## Usage
