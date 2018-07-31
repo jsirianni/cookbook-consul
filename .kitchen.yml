@@ -14,6 +14,7 @@ verifier:
 
 driver_config:
   box: bento/ubuntu-16.04
+  #box: bento/fedora-27
   customize:
     memory: 1024
 
@@ -32,8 +33,8 @@ platforms:
         conf:
           bind_addr: "10.0.3.240"
           # NOTE: Must be true for first run, on one node.
-          bootstrap: true
-          #bootstrap: false
+          #bootstrap: true
+          bootstrap: false
 
     #
     # Initial follower nodes (bootstap is `false`)
@@ -55,24 +56,6 @@ platforms:
       consul:
         conf:
           bind_addr: "10.0.3.242"
-
-  - name: consul-3
-    driver_config:
-      network:
-        - ["private_network", {ip: "10.0.3.243"}]
-    attributes:
-      consul:
-        conf:
-          bind_addr: "10.0.3.243"
-
-  - name: consul-4
-    driver_config:
-      network:
-        - ["private_network", {ip: "10.0.3.244"}]
-    attributes:
-      consul:
-        conf:
-          bind_addr: "10.0.3.244"
 
 
 suites:
