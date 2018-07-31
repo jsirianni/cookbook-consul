@@ -17,7 +17,7 @@ default[:consul][:sha256] = "e4146334be453146890023303da3e0c815669e108a18fb7d742
 
 
 # Config directories
-default[:consul][:conf][:base]         = "/etc/consul"
+default[:consul][:conf][:base]         = "/etc/consul/consul.d"
 
 
 # Config params
