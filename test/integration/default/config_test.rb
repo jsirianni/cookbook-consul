@@ -1,5 +1,5 @@
 
-directories = ['/etc/consul', '/opt/consul'].each do |dir|
+directories = ['/etc/consul/consul.d', '/opt/consul'].each do |dir|
     describe directory(dir) do
       its('mode') { should cmp '0700' }
       its('owner') { should eq 'consul' }

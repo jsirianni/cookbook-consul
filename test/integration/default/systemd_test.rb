@@ -33,12 +33,12 @@ describe command('sudo cat /etc/systemd/system/consul.service | grep Restart') d
    its('stdout') { should match (/Restart=on-failure/) }
 end
 
-describe command('sudo cat /etc/systemd/system/consul.service | grep ExecStart | cut -c 11-51') do
-   its('stdout') { should match ("/usr/local/bin/consul agent -server -bind") }
+describe command('sudo cat /etc/systemd/system/consul.service | grep ExecStart | cut -c 11-43') do
+   its('stdout') { should match ("/usr/local/bin/consul agent -bind") }
 end
 
-describe command('sudo cat /etc/systemd/system/consul.service | grep ExecStart | cut -c 64-86') do
-   its('stdout') { should match ("-config-dir=/etc/consul") }
+describe command('sudo cat /etc/systemd/system/consul.service | grep ExecStart | cut -c 56-87') do
+   its('stdout') { should match ("-config-dir=/etc/consul/consul.d") }
 end
 
 describe command('sudo cat /etc/systemd/system/consul.service | grep ExecReload') do

@@ -54,6 +54,24 @@ platforms:
       consul:
         conf:
           bind_addr: "10.0.3.242"
+  - name: consul-3
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.243"}]
+    attributes:
+      consul:
+        conf:
+          bind_addr: "10.0.3.243"
+  - name: consul-4
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.244"}]
+    attributes:
+      consul:
+        conf:
+          bind_addr: "10.0.3.244"
+
+
 
     #
     # Consul agents
@@ -67,7 +85,24 @@ platforms:
         conf:
           server: false
           bind_addr: "10.0.3.250"
-
+  - name: consul-agent-1
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.251"}]
+    attributes:
+      consul:
+        conf:
+          server: false
+          bind_addr: "10.0.3.251"
+  - name: consul-agent-2
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.252"}]
+    attributes:
+      consul:
+        conf:
+          server: false
+          bind_addr: "10.0.3.252"
 
 
 suites:
