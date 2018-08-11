@@ -8,6 +8,7 @@
     "log_level": "<%=node[:consul][:conf][:log_level]%>",
     "enable_syslog": <%=node[:consul][:conf][:syslog]%>,
     "retry_join" : <%=node[:consul][:conf][:retry_join]%>,
+    "retry_join_wan": <%=node[:consul][:conf][:retry_join_wan]%>,
     "addresses": {
         "http": "<%=node[:consul][:conf][:bind_addr]%>"
     }
