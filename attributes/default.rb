@@ -31,6 +31,7 @@ default[:consul][:conf][:log_level]  = "info"
 default[:consul][:conf][:syslog]     = "true"
 default[:consul][:conf][:data_dir]   = "/opt/consul"
 default[:consul][:conf][:retry_join] = '["10.1.10.1"]'     # NOTE: Override w/ role # NOTE: Same as startjoin but will retry
+default[:consul][:conf][:retry_join_wan] = '[]'
 default[:consul][:conf][:bind_addr]  = '0.0.0.0' # Must be overridden if instance has multiple network interfaces
 default[:consul][:conf][:api_port]   = '8500' # default port
 
