@@ -59,15 +59,15 @@ platforms:
     #
     # Consul agents
     #
- #- name: consul-agent-0
-#    driver_config:
-#      network:
-#        - ["private_network", {ip: "10.0.3.250"}]
-#    attributes:
-#      consul:
-#        conf:
-#          server: false
-#          bind_addr: "10.0.3.250"
+  - name: consul-agent-0
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.250"}]
+    attributes:
+      consul:
+        conf:
+          server: false
+          bind_addr: "10.0.3.250"
 
 
 
@@ -95,6 +95,6 @@ suites:
           acl:
             datacenter: "office"
             default_policy: "deny"
-            master_token: "sosecure"
-            agent_token: "sosecure"
+            master_token: "master"
+            agent_token: ""
             down_policy: "extend-cache"
