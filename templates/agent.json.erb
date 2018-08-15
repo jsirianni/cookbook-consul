@@ -1,0 +1,15 @@
+{
+    "ui": <%=node[:consul][:conf][:ui]%>,
+    "server": <%=node[:consul][:conf][:server]%>,
+    "datacenter": "<%=node[:consul][:conf][:datacenter]%>",
+    "data_dir": "<%=node[:consul][:conf][:data_dir]%>",
+    "encrypt": "<%=node[:consul][:conf][:encrypt]%>",
+    "log_level": "<%=node[:consul][:conf][:log_level]%>",
+    "enable_syslog": <%=node[:consul][:conf][:syslog]%>,
+    "retry_join" : <%=node[:consul][:conf][:retry_join]%>,
+    "addresses": {
+        "http": "<%=node[:consul][:conf][:bind_addr]%>"
+    },
+    "acl_datacenter": "<%=node[:consul][:conf][:acl][:datacenter]%>",
+    "acl_agent_token": "<%=node[:consul][:conf][:acl][:agent_token]%>"
+}
