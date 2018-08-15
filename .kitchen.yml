@@ -14,7 +14,8 @@ verifier:
 
 driver_config:
   #box: bento/ubuntu-16.04
-  box: bento/fedora-27
+  #box: bento/fedora-27
+  box: bento/centos-7.5
   customize:
     memory: 1024
 
@@ -58,15 +59,15 @@ platforms:
     #
     # Consul agents
     #
-  - name: consul-agent-0
-    driver_config:
-      network:
-        - ["private_network", {ip: "10.0.3.250"}]
-    attributes:
-      consul:
-        conf:
-          server: false
-          bind_addr: "10.0.3.250"
+ #- name: consul-agent-0
+#    driver_config:
+#      network:
+#        - ["private_network", {ip: "10.0.3.250"}]
+#    attributes:
+#      consul:
+#        conf:
+#          server: false
+#          bind_addr: "10.0.3.250"
 
 
 
@@ -91,3 +92,9 @@ suites:
             "10.0.3.241",
             "10.0.3.242"
           ]
+          acl:
+            datacenter: "office"
+            default_policy: "deny"
+            master_token: "sosecure"
+            agent_token: "sosecure"
+            down_policy: "extend-cache"
