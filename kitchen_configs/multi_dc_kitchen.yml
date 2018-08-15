@@ -112,4 +112,14 @@ suites:
         conf:
           ui: true
           encrypt: "mlhw8wEnpHejll40nQx/4Q=="
+          acl:
+            datacenter: "office"
+            default_policy: "deny"
+            master_token: "master"
+            # Set this to "dummy_agent_token" before running `run_kitchen.sh`
+            agent_token: "dummy_agent_token" # Leave this alone, allow run_kitchen.sh to modify this.
+            down_policy: "extend-cache"
+ 
+
+
 
