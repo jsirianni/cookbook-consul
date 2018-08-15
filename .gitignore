@@ -20,3 +20,7 @@ bin/*
 Berksfile.lock
 .zero-knife.rb
 Policyfile.lock.json
+
+# tls stuff
+tls/
+kitchen_deploy.sh
