@@ -35,6 +35,25 @@ default[:consul][:conf][:retry_join_wan] = '[]'
 default[:consul][:conf][:bind_addr]  = '0.0.0.0' # Must be overridden if instance has multiple network interfaces
 default[:consul][:conf][:api_port]   = '8500' # default port
 
+# See the docuentation to understand acl
+# https://www.consul.io/docs/agent/options.html#acl_datacenter
+# This cookbook will default to deny all, and only allow what is
+# specifically prohibited.
+default[:consul][:conf][:acl][:datacenter]     = "default" # NOTE: Override w/ role
+default[:consul][:conf][:acl][:default_policy] = "deny" # NOTE: consul will default to allow
+default[:consul][:conf][:acl][:down_policy]    = "extend-cache"
+default[:consul][:conf][:acl][:master_token]    = "extend-cache"
+default[:consul][:conf][:acl][:agent_token]    = "extend-cache"
+
 
 # Systemd
 default[:consul][:systemd_unit_file] = "/etc/systemd/system/consul.service"
+
+
+# tls
+default[:consul][:conf][:tls][:dir]       = "/etc/consul/cert"
+default[:consul][:conf][:tls][:ca]        = "/etc/consul/cert/ca.crt"
+default[:consul][:conf][:tls][:cert_file] = "/etc/consul/cert/consul.crt"
+default[:consul][:conf][:tls][:key_file]  = "/etc/consul/cert/consul.key"
+default[:consul][:conf][:tls][:verify_incoming] = true
+default[:consul][:conf][:tls][:verify_outgoing] = true

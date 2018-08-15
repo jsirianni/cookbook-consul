@@ -11,5 +11,10 @@
     "retry_join_wan": <%=node[:consul][:conf][:retry_join_wan]%>,
     "addresses": {
         "http": "<%=node[:consul][:conf][:bind_addr]%>"
-    }
+    },
+    "acl_datacenter": "<%=node[:consul][:conf][:acl][:datacenter]%>",
+    "acl_default_policy": "<%=node[:consul][:conf][:acl][:default_policy]%>",
+    "acl_master_token": "<%=node[:consul][:conf][:acl][:master_token]%>",
+    "acl_agent_token": "<%=node[:consul][:conf][:acl][:agent_token]%>",
+    "acl_down_policy": "<%=node[:consul][:conf][:acl][:down_policy]%>"
 }
