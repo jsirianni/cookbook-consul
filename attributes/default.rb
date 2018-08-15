@@ -48,12 +48,3 @@ default[:consul][:conf][:acl][:agent_token]    = "sosecure"  # NOTE: Override w/
 
 # Systemd
 default[:consul][:systemd_unit_file] = "/etc/systemd/system/consul.service"
-
-
-# tls
-default[:consul][:conf][:tls][:dir]       = "/etc/consul/cert"
-default[:consul][:conf][:tls][:ca]        = "/etc/consul/cert/ca.crt"
-default[:consul][:conf][:tls][:cert_file] = "/etc/consul/cert/consul.crt"
-default[:consul][:conf][:tls][:key_file]  = "/etc/consul/cert/consul.key"
-default[:consul][:conf][:tls][:verify_incoming] = true
-default[:consul][:conf][:tls][:verify_outgoing] = true
