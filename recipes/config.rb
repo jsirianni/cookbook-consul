@@ -17,11 +17,15 @@ end
 
 
 # Create server config
-template "#{node[:consul][:conf][:base]}/server.json" do
-  source "server.json.erb"
+template "#{node[:consul][:conf][:base]}/consul.json" do
+  if node[:consul][:conf][:server] == true
+    source "server.json.erb"
+  else
+    source "agent.json.erb"
+  end
   owner node[:consul][:user]
   group node[:consul][:group]
   mode "0600"
-  notifies :reload, "service[consul]", :delayed
+  notifies :restart, "service[consul]", :delayed
   action :create
 end
