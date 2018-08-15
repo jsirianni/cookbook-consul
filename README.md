@@ -86,7 +86,16 @@ knife bootstrap consul-0 -r 'role[consul_main_office]' -x root -P password
 ## Testing
 The example `.kitchen.yml` configuration requires vagrant, virtualbox, bento/ubuntu16.04 box.
 ```
+
 berks install
+
+# will converge in proper order, and 
+# setup the agent token. Make sure to 
+# reset .kitchen.yml after you destroy
+# the cluster.
+./run_kitchen.sh
+
+# Run the tests
 kitchen verify
 ```
 
