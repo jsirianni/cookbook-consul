@@ -1,0 +1,115 @@
+#
+# Use bootstrap: "--bootstrap" on initial run, then disable on second run
+# to allow voting. bootstrap is only required for initial cluster formation
+# and should be avoided anytime after.
+
+---
+driver:
+  name: vagrant
+provisioner:
+  name: chef_zero
+  always_update_cookbooks: true
+verifier:
+  name: inspec
+
+driver_config:
+  box: bento/centos-7.5
+  customize:
+    memory: 512
+
+
+platforms:
+
+
+    # Office datacenter
+    #
+  - name: consul-office-0
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.240"}]
+    attributes:
+      consul:
+        conf:
+          datacenter: "office"
+          bind_addr: "10.0.3.240"
+          retry_join: ["10.0.3.240", "10.0.3.241", "10.0.3.242"]
+          # NOTE: Must be true for first run, on one node.
+          bootstrap: true
+          #bootstrap: false
+  - name: consul-office-1
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.241"}]
+    attributes:
+      consul:
+        conf:
+          datacenter: "office"
+          bind_addr: "10.0.3.241"
+          retry_join: ["10.0.3.240", "10.0.3.241", "10.0.3.242"]
+  - name: consul-office-2
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.3.242"}]
+    attributes:
+      consul:
+        conf:
+          datacenter: "office"
+          bind_addr: "10.0.3.242"
+          retry_join: ["10.0.3.240", "10.0.3.241", "10.0.3.242"]
+
+
+    # remote datacenter
+    #
+  - name: consul-office-0
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.4.240"}]
+    attributes:
+      consul:
+        conf:
+          datacenter: "remote"
+          bind_addr: "10.0.4.240"
+          retry_join: ["10.0.4.240", "10.0.4.241", "10.0.4.242"]
+          retry_join_wan: ["10.0.3.240", "10.0.3.241", "10.0.3.242"]
+          # NOTE: Must be true for first run, on one node.
+          bootstrap: true
+          #bootstrap: false
+  - name: consul-office-1
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.4.241"}]
+    attributes:
+      consul:
+        conf:
+          datacenter: "remote"
+          bind_addr: "10.0.4.241"
+          retry_join: ["10.0.4.240", "10.0.4.241", "10.0.4.242"]
+          retry_join_wan: ["10.0.3.240", "10.0.3.241", "10.0.3.242"]
+  - name: consul-office-2
+    driver_config:
+      network:
+        - ["private_network", {ip: "10.0.4.242"}]
+    attributes:
+      consul:
+        conf:
+          datacenter: "remote"
+          bind_addr: "10.0.4.242"
+          retry_join: ["10.0.4.240", "10.0.4.241", "10.0.4.242"]
+          retry_join_wan: ["10.0.3.240", "10.0.3.241", "10.0.3.242"]
+
+
+# Globals
+#
+suites:
+  - name: default
+    run_list:
+      - recipe[consul::default]
+    verifier:
+      inspec_tests:
+        - test/integration
+    attributes:
+      consul:
+        conf:
+          ui: true
+          encrypt: "mlhw8wEnpHejll40nQx/4Q=="
+
