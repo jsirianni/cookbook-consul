@@ -40,10 +40,10 @@ default[:consul][:conf][:api_port]   = '8500' # default port
 # This cookbook will default to deny all, and only allow what is
 # specifically prohibited.
 default[:consul][:conf][:acl][:datacenter]     = "default" # NOTE: Override w/ role
-default[:consul][:conf][:acl][:default_policy] = "deny" # NOTE: consul will default to allow
-default[:consul][:conf][:acl][:down_policy]    = "extend-cache"
-default[:consul][:conf][:acl][:master_token]    = "extend-cache"
-default[:consul][:conf][:acl][:agent_token]    = "extend-cache"
+default[:consul][:conf][:acl][:default_policy] = "deny"    # NOTE: Override w/ role # NOTE: consul will default to allow
+default[:consul][:conf][:acl][:down_policy]    = "extend-cache"  # NOTE: Override w/ role
+default[:consul][:conf][:acl][:master_token]   = "sosecure"  # NOTE: Override w/ role
+default[:consul][:conf][:acl][:agent_token]    = "sosecure"  # NOTE: Override w/ role
 
 
 # Systemd
