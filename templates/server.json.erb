@@ -16,5 +16,10 @@
     "acl_default_policy": "<%=node[:consul][:conf][:acl][:default_policy]%>",
     "acl_master_token": "<%=node[:consul][:conf][:acl][:master_token]%>",
     "acl_agent_token": "<%=node[:consul][:conf][:acl][:agent_token]%>",
-    "acl_down_policy": "<%=node[:consul][:conf][:acl][:down_policy]%>"
+    "acl_down_policy": "<%=node[:consul][:conf][:acl][:down_policy]%>",
+    "ca_file": "<%=node[:consul][:conf][:tls][:ca]%>",
+    "cert_file": "<%=node[:consul][:conf][:tls][:cert]%>",
+    "key_file": "<%=node[:consul][:conf][:tls][:key]%>",
+    "verify_incoming": <%=node[:consul][:conf][:tls][:verify_incoming]%>,
+    "verify_outgoing": <%=node[:consul][:conf][:tls][:verify_outgoing]%>
 }

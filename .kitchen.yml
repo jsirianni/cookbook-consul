@@ -98,3 +98,9 @@ suites:
             master_token: "sosecure"
             agent_token: "sosecure"
             down_policy: "extend-cache"
+          tls:
+            verify_incoming: false
+            verify_outgoing: false
+            ca: "/etc/consul/cert/ca.crt"
+            cert: "/etc/consul/cert/consul.crt"
+            key: "/etc/consul/cert/consul.key"
