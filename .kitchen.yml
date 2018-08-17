@@ -96,6 +96,6 @@ suites:
             datacenter: "office"
             default_policy: "deny"
             master_token: "master"
-            # Set this to "dummy_agent_token" before running `run_kitchen.sh`
+            # Set this to "dummy+agent+token" (underscores instead of plus signs) before running `run_kitchen.sh`
             agent_token: "dummy_agent_token" # Leave this alone, allow run_kitchen.sh to modify this.
             down_policy: "extend-cache"
